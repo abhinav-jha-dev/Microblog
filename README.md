@@ -22,7 +22,7 @@ Download > Python <Version>
 ### Setup Environment Variable
 We will be needing PIP(Python Package Installer) to download the required dependencies.
 ```
-<localDirPath>\Programs\Python\Python37-32\Scripts
+<localDirPath>\Programs\Python\Python37-32\Scripts  # Set this as system environment path.
 ```
 
 ### Setting Up Application
@@ -95,6 +95,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thankful for Timmy Reill's blog.
