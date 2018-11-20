@@ -12,8 +12,19 @@
 </head>
 <body>
     <div>Microblog: 
+        <!-- 
+        To have better control over these links, Flask provides a function called url_for(), which
+        generates URLs using its internal mapping of URLs to view functions. For example, url_for('login')
+        returns /login, and url_for('index') return '/index.
         <a href="/index">Home</a>
-        <a href="/login">Login</a>
+        <a href="/login">Login</a> 
+        You may ask why is it better to use the function names instead of URLs. The fact is that
+        URLs are much more likely to change than view function names, which are completely internal. 
+        A secondary reason is that as you will learn later, some URLs have dynamic components in them, 
+        so generating those URLs by hand would require concatenating multiple elements, which is 
+        tedious and error prone. The url_for() is also able to generate these complex URLs.-->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
     </div>
     <hr>
     <!-- Here I'm using a with construct to assign the result of calling get_flashed_messages()
