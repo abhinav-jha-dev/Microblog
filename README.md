@@ -76,6 +76,60 @@ If you are seeing this message then your application is running sucessfully. <b>
 
 Now click on http://127.0.0.1:5000/ link and open your application.
 
+### Setting Up Databases
+
+We are working with SQLite database to store the user details and will use MongoDB to store the magazine records. In this way we can learn both databases.
+
+The first is [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/), an extension that provides a Flask-friendly wrapper to the popular [SQLAlchemy](https://www.sqlalchemy.org/) package, which is an [Object Relational Mapper](https://en.wikipedia.org/wiki/Object-relational_mapping) or ORM.
+
+SQLAlchemy supports a long list of database engines, including the popular MySQL, PostgreSQL and SQLite.
+
+To install Flask-SQLAlchemy in your virtual environment, make sure you have activated it first, and then run:
+
+```
+(venv) $ pip install flask-sqlalchemy
+```
+
+The second extension that I'm going to present in this chapter is [Flask-Migrate](https://github.com/miguelgrinberg/flask-migrate), which is actually one created by yours truly.
+
+The installation process for Flask-Migrate is similar to other extensions you have seen:
+
+```
+(venv) $ pip install flask-migrate
+```
+### Create the Migration Repository
+
+Flask-Migrate exposes its commands through the <b>flask</b> command. You have already seen <b>flask run</b>, which is a sub-command that is native to Flask. The <b>flask db</b> sub-command is added by Flask-Migrate to manage everything related to database migrations. So let's create the migration repository for microblog by running <b>flask db init</b>:
+```
+(venv) $ flask db init
+  Creating directory /home/miguel/microblog/migrations ... done
+  Creating directory /home/miguel/microblog/migrations/versions ... done
+  Generating /home/miguel/microblog/migrations/alembic.ini ... done
+  Generating /home/miguel/microblog/migrations/env.py ... done
+  Generating /home/miguel/microblog/migrations/README ... done
+  Generating /home/miguel/microblog/migrations/script.py.mako ... done
+  Please edit configuration/connection/logging settings in
+  '/home/miguel/microblog/migrations/alembic.ini' before proceeding.
+```
+
+Now we will migrate the database and create the user table.
+```
+(venv) $ flask db migrate -m "users table"
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'user'
+INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['email']'
+INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'
+  Generating /home/miguel/microblog/migrations/versions/e517276bb1c2_users_table.py ... done
+```
+You will find that it has two functions called <b><i>upgrade()</i></b> and <b><i>downgrade()</b></i>. The <b><i>upgrade()</b></i> function applies the migration, and the </b></i>downgrade()</b></i> function removes it. This allows Alembic to migrate the database to any point in the history, even to older versions, by using the downgrade path.
+```
+(venv) $ flask db upgrade
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> e517276bb1c2, users table
+```
+
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
