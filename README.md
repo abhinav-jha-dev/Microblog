@@ -76,9 +76,9 @@ If you are seeing this message then your application is running sucessfully. <b>
 
 Now click on http://127.0.0.1:5000/ link and open your application.
 
-### Setting Up Databases
+### Setting Up Database
 
-We are working with SQLite database to store the user details and will use MongoDB to store the magazine records. In this way we can learn both databases.
+We are working with SQLite database to store our records, and after that we will add mongoDb to store logs. In this way we can learn both databases.
 
 The first is [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/), an extension that provides a Flask-friendly wrapper to the popular [SQLAlchemy](https://www.sqlalchemy.org/) package, which is an [Object Relational Mapper](https://en.wikipedia.org/wiki/Object-relational_mapping) or ORM.
 
