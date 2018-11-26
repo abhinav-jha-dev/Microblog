@@ -72,11 +72,11 @@ $ flask run                 # to run your application.
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
-If you are seeing this message then your application is running sucessfully. <b>Hurray!</b>
+If you are seeing this message then your application is running successfully. <b>Hurray!</b>
 
 Now click on http://127.0.0.1:5000/ link and open your application.
 
-### Setting Up Database
+### Setting Up Database (Refer to Chapter 4)
 
 We are working with SQLite database to store our records, and after that we will add mongoDb to store logs. In this way we can learn both databases.
 
@@ -111,7 +111,7 @@ Flask-Migrate exposes its commands through the <b>flask</b> command. You have al
   Please edit configuration/connection/logging settings in
   '/home/miguel/microblog/migrations/alembic.ini' before proceeding.
 ```
-
+### Migrate User Table
 Now we will migrate the database and create the user table.
 ```
 (venv) $ flask db migrate -m "users table"
@@ -122,6 +122,17 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['
 INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'
   Generating /home/miguel/microblog/migrations/versions/e517276bb1c2_users_table.py ... done
 ```
+### Migrate Post Table
+```
+(venv) $ flask db migrate -m "posts table"
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'post'
+INFO  [alembic.autogenerate.compare] Detected added index 'ix_post_timestamp' on '['timestamp']'
+  Generating /home/miguel/microblog/migrations/versions/780739b227a7_posts_table.py ... done
+```
+
+### Upgrade Database
 You will find that it has two functions called <b><i>upgrade()</i></b> and <b><i>downgrade()</b></i>. The <b><i>upgrade()</b></i> function applies the migration, and the </b></i>downgrade()</b></i> function removes it. This allows Alembic to migrate the database to any point in the history, even to older versions, by using the downgrade path.
 ```
 (venv) $ flask db upgrade
@@ -130,6 +141,90 @@ INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> e517276bb1c2, users table
 ```
 
+<b><i>downgrade()</i></b> is very helpful when you have issue with the migration query to downgrade the migration to the stable version.
+### Test Database
+Once in the Python prompt, let's import the database instance and the models:
+```
+>>> from app import db
+>>> from app.models import User, Post
+```
+Start by creating a new user:
+```
+>>> u = User(username='john', email='john@example.com')
+>>> db.session.add(u)
+>>> db.session.commit()
+```
+Let's add another user:
+```
+>>> u = User(username='susan', email='susan@example.com')
+>>> db.session.add(u)
+>>> db.session.commit()
+```
+The database can answer a query that returns all the users:
+```
+>>> users = User.query.all()
+>>> users
+[<User john>, <User susan>]
+>>> for u in users:
+...     print(u.id, u.username)
+...
+1 john
+2 susan
+```
+Here is another way to do queries. If you know the id of a user, you can retrieve that user as follows:
+```
+>>> u = User.query.get(1)
+>>> u
+<User john>
+```
+Now let's add a blog post:
+```
+>>> u = User.query.get(1)
+>>> p = Post(body='my first post!', author=u)
+>>> db.session.add(p)
+>>> db.session.commit()
+```
+To complete this session, let's look at a few more database queries:
+```
+>>> # get all posts written by a user
+>>> u = User.query.get(1)
+>>> u
+<User john>
+>>> posts = u.posts.all()
+>>> posts
+[<Post my first post!>]
+
+>>> # same, but with a user that has no posts
+>>> u = User.query.get(2)
+>>> u
+<User susan>
+>>> u.posts.all()
+[]
+
+>>> # print post author and body for all posts 
+>>> posts = Post.query.all()
+>>> for p in posts:
+...     print(p.id, p.author.username, p.body)
+...
+1 john my first post!
+
+# get all users in reverse alphabetical order
+>>> User.query.order_by(User.username.desc()).all()
+[<User susan>, <User john>]
+```
+The [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) documentation is the best place to learn about the many options that are available to query the database.<br>
+To complete this section, let's erase the test users and posts created above, so that the database is clean and ready for the next chapter:
+```
+>>> users = User.query.all()
+>>> for u in users:
+...     db.session.delete(u)
+...
+>>> posts = Post.query.all()
+>>> for p in posts:
+...     db.session.delete(p)
+...
+>>> db.session.commit()
+```
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
@@ -149,4 +244,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thankful for Timmy Reill's blog.
+* Thankful for Miguel Grinberg.
