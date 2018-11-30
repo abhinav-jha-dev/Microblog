@@ -225,6 +225,14 @@ To complete this section, let's erase the test users and posts created above, so
 ...
 >>> db.session.commit()
 ```
+### Password Hashing
+The following Python shell session demonstrates how to hash a password:
+```
+>>> from werkzeug.security import generate_password_hash
+>>> hash = generate_password_hash('foobar')
+>>> hash
+'pbkdf2:sha256:50000$vT9fkZM8$04dfa35c6476acf7e788a1b5b3c35e217c78dc04539d295f011f01f18cd2175f'
+```
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
