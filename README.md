@@ -233,6 +233,40 @@ The following Python shell session demonstrates how to hash a password:
 >>> hash
 'pbkdf2:sha256:50000$vT9fkZM8$04dfa35c6476acf7e788a1b5b3c35e217c78dc04539d295f011f01f18cd2175f'
 ```
+
+The verification process is done with a second function from Werkzeug, as follows:
+
+```
+>>> from werkzeug.security import check_password_hash
+>>> check_password_hash(hash, 'foobar')
+True
+>>> check_password_hash(hash, 'barfoo')
+False
+```
+<i> **Note:** The whole password hashing logic can be implemented as two new methods in the user model: Path: app/model.py</i>
+
+Here is an example usage of these new methods:
+```
+>>> u = User(username='susan', email='susan@example.com')
+>>> u.set_password('mypassword')
+>>> u.check_password('anotherpassword')
+False
+>>> u.check_password('mypassword')
+True
+```
+### Introduction to Flask-Login
+In this chapter I'm going to introduce you to a very popular Flask extension called [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
+
+To be ready for this chapter, you can start by installing Flask-Login in your virtual environment:
+```
+(venv) $ pip install flask-login
+```
+*As with other extensions, Flask-Login needs to be created and initialized right after the application instance in app/___init___.py.*
+
+Now as a step forward to setup user model please review the usermodel.
+
+### Preparing The User Model for Flask-Login - To Be Continued
+
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
