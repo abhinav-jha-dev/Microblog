@@ -265,7 +265,11 @@ To be ready for this chapter, you can start by installing Flask-Login in your vi
 
 Now as a step forward to setup user model please review the usermodel.
 
-### Preparing The User Model for Flask-Login - To Be Continued
+## User Profile
+I have used some fun things for the user avatar [Gravatar](http://en.gravatar.com/) to make things look good you will find the implementation in **app/models.py** file **avatar()** method.
+
+### Using Jinja2 Sub-Templates
+I have created sub template for post as Index and user page both contain the logic for the post. Here is my sub template ***app/templates/_post.html***
 
 ## Built With
 
