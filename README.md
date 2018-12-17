@@ -276,6 +276,16 @@ I have created sub template for post as Index and user page both contain the log
 * [Python](https://docs.python.org/3/) - Open source programming language
 * [Flask](http://flask.pocoo.org/docs/1.0/) - Framework for Web application development
 
+## Features
+- User and User Profile
+  - User Login and Registration
+  - Last Visiting Time for User
+- Web Forms
+- SQL Light Database
+- Profile Picture (Using Avatars)
+
+
+
 ## Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
