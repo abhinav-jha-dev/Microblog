@@ -76,7 +76,7 @@ If you are seeing this message then your application is running successfully. <b
 
 Now click on http://127.0.0.1:5000/ link and open your application.
 
-### Setting Up Database (Refer to Chapter 4)
+### Lets Setup your Database
 
 We are working with SQLite database to store our records, and after that we will add mongoDb to store logs. In this way we can learn both databases.
 
@@ -111,10 +111,10 @@ Flask-Migrate exposes its commands through the <b>flask</b> command. You have al
   Please edit configuration/connection/logging settings in
   '/home/miguel/microblog/migrations/alembic.ini' before proceeding.
 ```
-### Migrate User Table
+### Lets migrate our tables
 Now we will migrate the database and create the user table.
 ```
-(venv) $ flask db migrate -m "users table"
+(venv) $ flask db migrate -m "Migrating database"
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
 INFO  [alembic.autogenerate.compare] Detected added table 'user'
@@ -122,17 +122,8 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['
 INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'
   Generating /home/miguel/microblog/migrations/versions/e517276bb1c2_users_table.py ... done
 ```
-### Migrate Post Table
-```
-(venv) $ flask db migrate -m "posts table"
-INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
-INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
-INFO  [alembic.autogenerate.compare] Detected added table 'post'
-INFO  [alembic.autogenerate.compare] Detected added index 'ix_post_timestamp' on '['timestamp']'
-  Generating /home/miguel/microblog/migrations/versions/780739b227a7_posts_table.py ... done
-```
 
-### Upgrade Database
+### Lets Upgrade Database
 You will find that it has two functions called <b><i>upgrade()</i></b> and <b><i>downgrade()</b></i>. The <b><i>upgrade()</b></i> function applies the migration, and the </b></i>downgrade()</b></i> function removes it. This allows Alembic to migrate the database to any point in the history, even to older versions, by using the downgrade path.
 ```
 (venv) $ flask db upgrade
@@ -142,7 +133,7 @@ INFO  [alembic.runtime.migration] Running upgrade  -> e517276bb1c2, users table
 ```
 
 <b><i>downgrade()</i></b> is very helpful when you have issue with the migration query to downgrade the migration to the stable version.
-### Test Database
+### Test your database
 Once in the Python prompt, let's import the database instance and the models:
 ```
 >>> from app import db
@@ -225,7 +216,7 @@ To complete this section, let's erase the test users and posts created above, so
 ...
 >>> db.session.commit()
 ```
-### Password Hashing
+### Learn Password Hashing
 The following Python shell session demonstrates how to hash a password:
 ```
 >>> from werkzeug.security import generate_password_hash
@@ -254,7 +245,9 @@ False
 >>> u.check_password('mypassword')
 True
 ```
-### Introduction to Flask-Login
+## Lets Install Project Dependency
+
+### Flask-Login
 In this chapter I'm going to introduce you to a very popular Flask extension called [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
 
 To be ready for this chapter, you can start by installing Flask-Login in your virtual environment:
@@ -264,12 +257,6 @@ To be ready for this chapter, you can start by installing Flask-Login in your vi
 *As with other extensions, Flask-Login needs to be created and initialized right after the application instance in app/___init___.py.*
 
 Now as a step forward to setup user model please review the usermodel.
-
-## User Profile
-I have used some fun things for the user avatar [Gravatar](http://en.gravatar.com/) to make things look good you will find the implementation in **app/models.py** file **avatar()** method.
-
-### Using Jinja2 Sub-Templates
-I have created sub template for post as Index and user page both contain the logic for the post. Here is my sub template ***app/templates/_post.html***
 
 ## Built With
 
