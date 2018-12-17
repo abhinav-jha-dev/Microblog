@@ -61,15 +61,19 @@ Now you are all set.
 We are working with Flask for creating this web application. So download the flask package.
 
 ```
-$ pip install Flask
-$ pip install Flask-wtf     # for installing Flask Webform.
-$ setprojectdir .           # this will set the default project directory as the main directory
-$ flask run                 # to run your application.
+(venv) $ pip install Flask
+(venv) $ pip install Flask-wtf     # for installing Flask Webform.
+(venv) $ setprojectdir .           # this will set the default project directory as the main directory
+(venv) $ export FLASK_DEBUG=1      # enables debugging mode
+(venv) $ flask run                 # to run your application.
 
 * Environment: production
    WARNING: Do not use the development server in a production environment.
    Use a production WSGI server instead.
- * Debug mode: off
+ * Debug mode: on
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 305-291-976
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 If you are seeing this message then your application is running successfully. <b>Hurray!</b>
@@ -245,7 +249,7 @@ False
 >>> u.check_password('mypassword')
 True
 ```
-## Lets Install Project Dependency
+## Lets Setup Project Dependency
 
 ### Flask-Login
 In this chapter I'm going to introduce you to a very popular Flask extension called [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
@@ -257,6 +261,19 @@ To be ready for this chapter, you can start by installing Flask-Login in your vi
 *As with other extensions, Flask-Login needs to be created and initialized right after the application instance in app/___init___.py.*
 
 Now as a step forward to setup user model please review the usermodel.
+
+### Setup Mailing credential on your environment
+I have used mailing server to send error logs on your email if you don't want this feature you need not set the configurations. This feature is helpful if you are using this application for production server since error stack trace can only be seen on the console.
+
+Here are the configurations that we need to take care:
+
+- MAIL_SERVER: smtp.gmail.com (For GMail)
+- MAIL_PORT: 465 (SSL port for GMail)
+- MAIL_USE_TLS: yes/no (it is optional)
+- MAIL_USERNAME: Your full Gmail address (e.g. yourusername@gmail.com)
+- MAIL_PASSWORD: Your Gmail password
+
+After Setting up the configurations for mailing server I would suggest you to add your application administrators mail ids in the **ADMINS** array *ADMINS = ['your-email@example.com']*
 
 ## Built With
 
@@ -270,8 +287,9 @@ Now as a step forward to setup user model please review the usermodel.
 - Web Forms
 - SQL Light Database
 - Profile Picture (Using Avatars)
-
-
+- Error Handling
+  - Custom Error Pages
+  - Email error Messages
 
 ## Contributing
 
