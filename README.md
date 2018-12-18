@@ -274,6 +274,13 @@ Here are the configurations that we need to take care:
 - MAIL_PASSWORD: Your Gmail password
 
 After Setting up the configurations for mailing server I would suggest you to add your application administrators mail ids in the **ADMINS** array *ADMINS = ['your-email@example.com']*
+```
+export MAIL_SERVER=smtp.googlemail.com
+export MAIL_PORT=465
+export MAIL_USE_TLS=1
+export MAIL_USERNAME=<your-gmail-username>
+export MAIL_PASSWORD=<your-gmail-password>
+```
 
 ## Built With
 
@@ -290,6 +297,7 @@ After Setting up the configurations for mailing server I would suggest you to ad
 - Error Handling
   - Custom Error Pages
   - Email error Messages
+  - Logging to a file
 
 ## Contributing
 
