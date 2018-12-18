@@ -298,6 +298,7 @@ export MAIL_PASSWORD=<your-gmail-password>
   - Custom Error Pages
   - Email error Messages
   - Logging to a file
+- Followers and Followers Posts
 
 ## Contributing
 
