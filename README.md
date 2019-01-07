@@ -282,6 +282,16 @@ export MAIL_USERNAME=<your-gmail-username>
 export MAIL_PASSWORD=<your-gmail-password>
 ```
 
+### Flask Mail And JWT for Password Reset
+As far as the actual sending of emails, Flask has a popular extension called [Flask-Mail](https://pythonhosted.org/Flask-Mail/) that can make the task very easy. As always, this extension is installed with pip:
+```
+(venv) $ pip install flask-mail
+```
+The password reset links will have a secure token in them. To generate these tokens, I'm going to use [JSON Web Tokens](https://jwt.io/), which also have a popular Python package:
+```
+(venv) $ pip install pyjwt
+```
+
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
