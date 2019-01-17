@@ -310,6 +310,15 @@ The password reset links will have a secure token in them. To generate these tok
   - Logging to a file
 - Followers and Followers Posts
 
+## Creating Requirement.txt for packages.
+
+To run the application without going through the tutorial you can directly install the packages specified in `requirement.txt` file at root directory. For more information on creating requirement files read this article [Better Python dependency while packaging your project](https://medium.com/python-pandemonium/better-python-dependency-and-package-management-b5d8ea29dff1). I have used `pipreqs` method as it is more reliable for future implementations.
+
+Install project requirements:
+```
+(venv) $ pip install -r requirement.txt
+```
+
 ## Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
