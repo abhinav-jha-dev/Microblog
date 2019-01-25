@@ -1,0 +1,58 @@
+<!-- Implemented Flask-bootstrap -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% if title %}
+    <title>{{title}} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog</title>
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div>
+        <!-- 
+        To have better control over these links, Flask provides a function called url_for(), which
+        generates URLs using its internal mapping of URLs to view functions. For example, url_for('login')
+        returns /login, and url_for('index') return '/index.
+        <a href="/index">Home</a>
+        <a href="/login">Login</a> 
+        You may ask why is it better to use the function names instead of URLs. The fact is that
+        URLs are much more likely to change than view function names, which are completely internal. 
+        A secondary reason is that as you will learn later, some URLs have dynamic components in them, 
+        so generating those URLs by hand would require concatenating multiple elements, which is 
+        tedious and error prone. The url_for() is also able to generate these complex URLs.-->
+        <div>
+            Microblog:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+            <a href="{{ url_for('explore') }}">Explore</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <!-- Here I'm using a with construct to assign the result of calling get_flashed_messages()
+         to a messages variable, all in the context of the template. The get_flashed_messages() 
+         function comes from Flask, and returns a list of all the messages that have been registered 
+         with flash() previously. -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+
+</html>

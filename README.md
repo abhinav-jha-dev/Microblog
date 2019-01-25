@@ -292,6 +292,13 @@ The password reset links will have a secure token in them. To generate these tok
 (venv) $ pip install pyjwt
 ```
 
+### Styling
+Fortunately, there is a Flask extension called [Flask-Bootstrap](https://pythonhosted.org/Flask-Bootstrap/) that provides a ready to use base template that has the Bootstrap framework installed. Let's install this extension:
+```
+(venv) $ pip install flask-bootstrap
+```
+I have moved old HTML code in the `/app/templates/old_htmlfiles/` directory.
+
 ## Built With
 
 * [Python](https://docs.python.org/3/) - Open source programming language
@@ -319,6 +326,19 @@ Install project requirements:
 (venv) $ pip install -r requirement.txt
 ```
 
+### Generating requirement.txt
+Install `pipreqs` using pip:
+```
+(venv) $ pip install pipreqs
+```
+Create `requirement.txt`:
+```
+(venv) $ pipreqs .
+```
+Update `requirement.txt`:
+```
+(venv) $ pipreqs --force .
+```
 ## Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
