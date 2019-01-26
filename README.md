@@ -281,6 +281,28 @@ export MAIL_USE_TLS=1
 export MAIL_USERNAME=<your-gmail-username>
 export MAIL_PASSWORD=<your-gmail-password>
 ```
+We are also implement sending mail via ***FLASK_MAIL***.
+
+### Flask Mail
+We are using flask_mail to send mails at the time of Reset Password functionality provided at the time of user login.
+
+As far as the actual sending of emails, Flask has a popular extension called [Flask-Mail](https://pythonhosted.org/Flask-Mail/) that can make the task very easy. As always, this extension is installed with pip:
+```
+(venv) $ pip install flask-mail
+```
+The password reset links will have a secure token in them. To generate these tokens, I'm going to use JSON Web Tokens, which also have a popular Python package:
+```
+(venv) $ pip install pyjwt
+```
+If you are planning to test sending of emails you have the same two options. If you want to use an emulated email server, Python provides one that is very handy that you can start in a second terminal with the following command:
+```
+(venv) $ python -m smtpd -n -c DebuggingServer localhost:8025
+```
+To configure for this server you will need to set two environment variables:
+```
+(venv) $ export MAIL_SERVER=localhost
+(venv) $ export MAIL_PORT=8025
+```
 
 ### Flask Mail And JWT for Password Reset
 As far as the actual sending of emails, Flask has a popular extension called [Flask-Mail](https://pythonhosted.org/Flask-Mail/) that can make the task very easy. As always, this extension is installed with pip:
@@ -308,6 +330,7 @@ I have moved old HTML code in the `/app/templates/old_htmlfiles/` directory.
 - User and User Profile
   - User Login and Registration
   - Last Visiting Time for User
+  - Forgot password via mail
 - Web Forms
 - SQL Light Database
 - Profile Picture (Using Avatars)
