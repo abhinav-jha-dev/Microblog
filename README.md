@@ -313,6 +313,11 @@ The password reset links will have a secure token in them. To generate these tok
 ```
 (venv) $ pip install pyjwt
 ```
+## Introducing Moment.js and Flask-Moment
+So let's start by installing Flask-Moment:
+```
+(venv) $ pip install flask-moment
+```
 
 ### Styling
 Fortunately, there is a Flask extension called [Flask-Bootstrap](https://pythonhosted.org/Flask-Bootstrap/) that provides a ready to use base template that has the Bootstrap framework installed. Let's install this extension:
@@ -339,6 +344,8 @@ I have moved old HTML code in the `/app/templates/old_htmlfiles/` directory.
   - Email error Messages
   - Logging to a file
 - Followers and Followers Posts
+- Managing Time-Zone across the application
+- Using Flask-Mail for sending mail at the time of password reset
 
 ## Creating Requirement.txt for packages.
 
