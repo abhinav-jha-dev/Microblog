@@ -346,6 +346,7 @@ I have moved old HTML code in the `/app/templates/old_htmlfiles/` directory.
 - Followers and Followers Posts
 - Managing Time-Zone across the application
 - Using Flask-Mail for sending mail at the time of password reset
+- Using I18n and I10n for text translation.(not implemented with this application for more info checkout this [Chapter 13: I18n and L10n](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n).)
 
 ## Creating Requirement.txt for packages.
 
