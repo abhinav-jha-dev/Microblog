@@ -1,7 +1,8 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from flask_login import current_user, login_user, logout_user, login_required # for managing the user session, login and logout
+from flask_babel import get_locale, _
 from app.models import User, Post # initiating the user model
 from werkzeug.urls import url_parse
 from datetime import datetime
@@ -17,6 +18,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 @app.route('/', methods=['get','post'])
 @app.route('/index', methods=['get','post'])
@@ -27,7 +29,7 @@ def index():
         post = Post(body = form.post.data, author = current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your post is now live!')
+        flash(_('Your post is now live!'))
         return redirect(url_for('index'))
     
     page = request.args.get('page', 1, type=int)

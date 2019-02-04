@@ -1,0 +1,117 @@
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-02-04 18:50+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: app/__init__.py:21
+msgid "Please log in to access this page."
+msgstr "इस पृष्ठ का प्रयोग करने केलिए लॉगिन करें।"
+
+#: app/routes.py:32
+msgid "Your post is now live!"
+msgstr "आपकी पोस्ट अब लाइव है!"
+
+#: app/templates/404.html:4
+msgid "File Not Found"
+msgstr "फाइल नहीं मिली"
+
+#: app/templates/500.html:4
+msgid "An unexpected error has occurred"
+msgstr "एक अनपेक्षित त्रुटि हो गई है"
+
+#: app/templates/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr "व्यवस्थापक को सूचित कर दिया गया है। असुविधा के लिए खेद है!"
+
+#: app/templates/500.html:6
+msgid "Back"
+msgstr "वापस"
+
+#: app/templates/_post.html:14
+#, python-format
+msgid "%(username)s said %(when)s"
+msgstr "%(username)s कहा हुआ %(when)s"
+
+#: app/templates/base.html:16
+msgid "My Blog App"
+msgstr "मेरा ब्लॉग ऐप"
+
+#: app/templates/base.html:20
+msgid "Home"
+msgstr "होम"
+
+#: app/templates/base.html:23
+msgid "Login"
+msgstr "लॉग इन करें"
+
+#: app/templates/base.html:27
+msgid "Profile"
+msgstr "प्रोफाइल"
+
+#: app/templates/base.html:30
+msgid "Explore"
+msgstr "अन्वेषण"
+
+#: app/templates/base.html:33
+msgid "Logout"
+msgstr "लोग आउट"
+
+#: app/templates/edit_profile.html:5
+msgid "Edit Profile"
+msgstr "प्रोफाइल एडिट करें"
+
+#: app/templates/index.html:5
+#, python-format
+msgid "Hi, %(username)s!"
+msgstr "नमस्ते, %(username)s!"
+
+#: app/templates/index.html:21
+msgid "Newer posts"
+msgstr "नए पोस्टस"
+
+#: app/templates/index.html:26
+msgid "Older posts"
+msgstr "पुराने पोस्ट"
+
+#: app/templates/login.html:11
+msgid "New User"
+msgstr "नया उपयोगकर्ता"
+
+#: app/templates/login.html:11
+msgid "Click to Register"
+msgstr "रजिस्टर करने के लिए क्लिक करें"
+
+#: app/templates/login.html:13
+msgid "Forgot Your Password"
+msgstr "क्या आप पासवर्ड भूल गए"
+
+#: app/templates/login.html:14
+msgid "Click to Reset It"
+msgstr "इसे रीसेट करने के लिए क्लिक करें"
+
+#: app/templates/register.html:5
+msgid "Register"
+msgstr "रजिस्टर"
+
+#: app/templates/reset_password.html:4
+msgid "Reset Your Password"
+msgstr "अपना पासवर्ड रीसेट करें"
+
+#: app/templates/reset_password_request.html:5
+msgid "Reset Password"
+msgstr "पासवर्ड रीसेट"
+

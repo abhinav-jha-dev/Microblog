@@ -1,15 +1,15 @@
-from flask import Flask
-from config import Config
+import logging
+from logging.handlers import SMTPHandler, RotatingFileHandler
+import os
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager    # initializing up flask login
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
-import logging
-from logging.handlers import SMTPHandler, RotatingFileHandler
-import os
-from flask_mail import Mail
+from flask_babel import Babel, lazy_gettext as _l
+from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -18,9 +18,16 @@ migrate = Migrate(app, db)
 mail = Mail(app)
 login = LoginManager(app)       # configuring the login framework for the app.
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    # return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return 'hi'
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
